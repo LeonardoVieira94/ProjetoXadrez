@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XadrezConsole.Board.Enums;
 
-namespace XadrezConsole.Tabuleiro
+namespace XadrezConsole.Board
 {
     internal class Posicao
     {
