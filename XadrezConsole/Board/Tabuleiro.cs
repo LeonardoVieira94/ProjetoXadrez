@@ -23,6 +23,12 @@ namespace XadrezConsole.Board
             Columns = columns;
             Pecas = new Peca[Lines, Columns];
         }
+
+        public Peca Peca(int line, int column)
+        { 
+            return Pecas[line, column];
+        }
+
     }
 
 

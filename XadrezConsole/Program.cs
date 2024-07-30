@@ -1,5 +1,5 @@
 ﻿using XadrezConsole.Board;
-using XadrezConsole.Tabuleiro.Enums;
+using XadrezConsole.Board.Enums;
 
 namespace XadrezConsole
 {
@@ -11,11 +11,7 @@ namespace XadrezConsole
             
             Posicao p;
 
-            p = new Posicao(3, 4);
-
-            Console.WriteLine($"Posição: {p}");
-
-            Console.ReadLine();
+            Screen.PrintBoard(tab);
 
         }
     }
