@@ -16,9 +16,9 @@ namespace XadrezConsole.Board
         public int NumMovements { get; protected set; }
         public Tabuleiro Tab { get; protected set; }
 
-        public Peca(Posicao posicao, Cor color, Tabuleiro tab)
+        public Peca(Cor color, Tabuleiro tab)
         {
-            Posicao = posicao;
+            Posicao = null;
             Color = color;
             Tab = tab;
             NumMovements = 0;

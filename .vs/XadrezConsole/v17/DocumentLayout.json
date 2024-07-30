@@ -7,24 +7,36 @@
       "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\chessgame\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\chessgame\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\board\\tabuleiro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\board\\tabuleiro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\chessgame\\queen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\chessgame\\queen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\board\\posicao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\board\\posicao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\chessgame\\king.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\chessgame\\king.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\board\\peca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\board\\peca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\board\\tabuleiro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\board\\tabuleiro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\board\\enums\\cor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\board\\enums\\cor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|g:\\projetos\\xadrezconsole\\xadrezconsole\\board\\posicao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B2FAC58-6DFD-43CF-ADE1-90BDF3A7EDFB}|XadrezConsole\\XadrezConsole.csproj|solutionrelative:xadrezconsole\\board\\posicao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +46,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Tower.cs",
+              "DocumentMoniker": "G:\\projetos\\XadrezConsole\\XadrezConsole\\ChessGame\\Tower.cs",
+              "RelativeDocumentMoniker": "XadrezConsole\\ChessGame\\Tower.cs",
+              "ToolTip": "G:\\projetos\\XadrezConsole\\XadrezConsole\\ChessGame\\Tower.cs",
+              "RelativeToolTip": "XadrezConsole\\ChessGame\\Tower.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T21:25:11.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Queen.cs",
+              "DocumentMoniker": "G:\\projetos\\XadrezConsole\\XadrezConsole\\ChessGame\\Queen.cs",
+              "RelativeDocumentMoniker": "XadrezConsole\\ChessGame\\Queen.cs",
+              "ToolTip": "G:\\projetos\\XadrezConsole\\XadrezConsole\\ChessGame\\Queen.cs",
+              "RelativeToolTip": "XadrezConsole\\ChessGame\\Queen.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T21:24:54.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "King.cs",
+              "DocumentMoniker": "G:\\projetos\\XadrezConsole\\XadrezConsole\\ChessGame\\King.cs",
+              "RelativeDocumentMoniker": "XadrezConsole\\ChessGame\\King.cs",
+              "ToolTip": "G:\\projetos\\XadrezConsole\\XadrezConsole\\ChessGame\\King.cs",
+              "RelativeToolTip": "XadrezConsole\\ChessGame\\King.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T21:18:43.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Screen.cs",
               "DocumentMoniker": "G:\\projetos\\XadrezConsole\\XadrezConsole\\Screen.cs",
               "RelativeDocumentMoniker": "XadrezConsole\\Screen.cs",
@@ -51,13 +102,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Tabuleiro.cs",
               "DocumentMoniker": "G:\\projetos\\XadrezConsole\\XadrezConsole\\Board\\Tabuleiro.cs",
               "RelativeDocumentMoniker": "XadrezConsole\\Board\\Tabuleiro.cs",
               "ToolTip": "G:\\projetos\\XadrezConsole\\XadrezConsole\\Board\\Tabuleiro.cs",
               "RelativeToolTip": "XadrezConsole\\Board\\Tabuleiro.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAnAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-30T14:20:11.478Z",
               "EditorCaption": ""
@@ -70,13 +121,14 @@
               "RelativeDocumentMoniker": "XadrezConsole\\Board\\Peca.cs",
               "ToolTip": "G:\\projetos\\XadrezConsole\\XadrezConsole\\Board\\Peca.cs",
               "RelativeToolTip": "XadrezConsole\\Board\\Peca.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAZAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T14:17:25.631Z"
+              "WhenOpened": "2024-07-30T14:17:25.631Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Cor.cs",
               "DocumentMoniker": "G:\\projetos\\XadrezConsole\\XadrezConsole\\Board\\Enums\\Cor.cs",
               "RelativeDocumentMoniker": "XadrezConsole\\Board\\Enums\\Cor.cs",
@@ -84,11 +136,12 @@
               "RelativeToolTip": "XadrezConsole\\Board\\Enums\\Cor.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T14:15:12.601Z"
+              "WhenOpened": "2024-07-30T14:15:12.601Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Posicao.cs",
               "DocumentMoniker": "G:\\projetos\\XadrezConsole\\XadrezConsole\\Board\\Posicao.cs",
               "RelativeDocumentMoniker": "XadrezConsole\\Board\\Posicao.cs",
@@ -107,7 +160,7 @@
               "RelativeDocumentMoniker": "XadrezConsole\\Program.cs",
               "ToolTip": "G:\\projetos\\XadrezConsole\\XadrezConsole\\Program.cs",
               "RelativeToolTip": "XadrezConsole\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-30T11:29:51.106Z",
               "EditorCaption": ""
