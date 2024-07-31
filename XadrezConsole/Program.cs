@@ -18,6 +18,12 @@ namespace XadrezConsole
                 tab.ColocarPeca(new King(Cor.Black, tab), new Posicao(2, 4));
 
                 Screen.PrintBoard(tab);
+
+                ChessPosition piece = new ChessPosition('c', 7);
+
+                Console.WriteLine(piece);
+
+                Console.WriteLine(piece.ToPosition());
             }
 
             catch (BoardException e)

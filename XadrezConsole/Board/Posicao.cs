@@ -9,22 +9,22 @@ namespace XadrezConsole.Board
 {
     internal class Posicao
     {
-        public int Line { get; set; }
+        public int Row { get; set; }
         public int Column { get; set; }
 
         public Posicao() 
         {
         }
 
-        public Posicao(int line, int column)
+        public Posicao(int row, int column)
         {
-            Line = line;
+            Row = row;
             Column = column;
         }
 
         public override string ToString()
         {
-            return Line + ", " + Column;
+            return Row + ", " + Column;
         }
     }
 }

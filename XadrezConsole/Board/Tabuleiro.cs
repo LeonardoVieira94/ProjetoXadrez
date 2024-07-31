@@ -9,7 +9,7 @@ namespace XadrezConsole.Board
 {
     internal class Tabuleiro
     {
-        public int Lines { get; set; }
+        public int Rows { get; set; }
         public int Columns { get; set; }
         
         private Peca[,] Pecas;
@@ -18,11 +18,11 @@ namespace XadrezConsole.Board
         {
         }
 
-        public Tabuleiro(int lines, int columns)
+        public Tabuleiro(int rows, int columns)
         {
-            Lines = lines;
+            Rows = rows;
             Columns = columns;
-            Pecas = new Peca[Lines, Columns];
+            Pecas = new Peca[Rows, Columns];
         }
 
         public Peca Peca(int line, int column)
@@ -32,7 +32,7 @@ namespace XadrezConsole.Board
 
         public Peca Peca(Posicao pos)
         {
-            return Pecas[pos.Line, pos.Column];
+            return Pecas[pos.Row, pos.Column];
         }
 
         public bool ExistePeca(Posicao pos)
@@ -48,13 +48,13 @@ namespace XadrezConsole.Board
             {
                 throw new BoardException("There's a piece on this position!");
             }
-            Pecas[pos.Line, pos.Column] = p;
+            Pecas[pos.Row, pos.Column] = p;
             p.Posicao = pos;
         }
 
         public bool PosicaoValida (Posicao pos)
         {
-            if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Columns)
+            if (pos.Row < 0 || pos.Row >= Rows || pos.Column < 0 || pos.Column >= Columns)
             {
                 return false;
             }

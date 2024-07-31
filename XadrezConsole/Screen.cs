@@ -11,7 +11,7 @@ namespace XadrezConsole
     {
         public static void PrintBoard(Tabuleiro tab)
         {
-            for (int i = 0; i < tab.Lines; i++)
+            for (int i = 0; i < tab.Rows; i++)
             {
                 for (int j = 0; j < tab.Columns; j++)
                 {
