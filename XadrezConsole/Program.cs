@@ -16,6 +16,7 @@ namespace XadrezConsole
                 tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(0, 0));
                 tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(1, 3));
                 tab.ColocarPeca(new King(Cor.Black, tab), new Posicao(2, 4));
+                tab.ColocarPeca(new King(Cor.White, tab), new Posicao(3, 5));
 
                 Screen.PrintBoard(tab);
 
