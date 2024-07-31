@@ -1,5 +1,6 @@
 ﻿using XadrezConsole.Board;
 using XadrezConsole.Board.Enums;
+using XadrezConsole.Board.Exceptions;
 using XadrezConsole.ChessGame;
 
 namespace XadrezConsole
@@ -8,13 +9,21 @@ namespace XadrezConsole
     {
         static void Main(string[] args)
         {
-            Tabuleiro tab = new Tabuleiro(8,8);
+            try
+            {
 
-            tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(0, 0));
-            tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(1, 3));
-            tab.ColocarPeca(new King(Cor.Black, tab), new Posicao(2, 4));
+                Tabuleiro tab = new Tabuleiro(8, 8);
+                tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(0, 0));
+                tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(1, 3));
+                tab.ColocarPeca(new King(Cor.Black, tab), new Posicao(2, 4));
 
-            Screen.PrintBoard(tab);
+                Screen.PrintBoard(tab);
+            }
+
+            catch (BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
         }
     }
