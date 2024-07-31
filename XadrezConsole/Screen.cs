@@ -18,17 +18,8 @@ namespace XadrezConsole
                 Console.Write($"{8 - i} ");
                 for (int j = 0; j < tab.Columns; j++)
                 {
-
-                    if (tab.Peca(i, j) == null)
-                    {
-                        Console.Write("- ");
-                    }
-                    else
-                    {
-                        PrintPeca(tab.Peca(i, j));
-                        Console.Write(" ");
-                    }
-                    
+                    PrintPeca(tab.Peca(i, j));
+                    Console.Write(" ");
                 }
 
                 Console.WriteLine();
@@ -36,27 +27,62 @@ namespace XadrezConsole
             Console.WriteLine("  A B C D E F G H");
         }
 
+        public static void PrintBoard(Tabuleiro tab, bool[,] posicoesPossiveis)
+        {
+            ConsoleColor originalBackground = Console.BackgroundColor;
+            ConsoleColor changedBackground = ConsoleColor.DarkGray;
+            for (int i = 0; i < tab.Rows; i++)
+            {
+                Console.Write($"{8 - i} ");
+                for (int j = 0; j < tab.Columns; j++)
+                {
+                    if (posicoesPossiveis[i, j])
+                    {
+                        Console.BackgroundColor = changedBackground;
+                    }
+                    else
+                    {
+                         Console.BackgroundColor = originalBackground; 
+                    }
+                    PrintPeca(tab.Peca(i, j));
+                    Console.Write(" ");
+                }
+
+                Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H");
+            Console.BackgroundColor = originalBackground;
+        }
+
         public static void PrintPeca(Peca peca)
         {
-            if (peca.Color == Cor.Black)
+
+            if (peca == null)
             {
-                ConsoleColor aux = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(peca);
-                Console.ForegroundColor = aux;
+                Console.Write("-");
             }
-            else 
+            else
             {
-                Console.Write(peca);
+                if (peca.Color == Cor.Black)
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(peca);
+                    Console.ForegroundColor = aux;
+                }
+                else
+                {
+                    Console.Write(peca);
+                }
             }
-            
+
         }
 
         public static ChessPosition ReadPosition()
         {
             string s = Console.ReadLine();
             char column = s[0];
-            int row = int.Parse(s[1]+"");
+            int row = int.Parse(s[1] + "");
 
             return new ChessPosition(column, row);
         }

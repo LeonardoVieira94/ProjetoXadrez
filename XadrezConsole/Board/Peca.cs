@@ -7,7 +7,7 @@ using XadrezConsole.Board.Enums;
 
 namespace XadrezConsole.Board
 {
-    internal class Peca
+    abstract class Peca
     {
         public Posicao Posicao { get; set; }
 
@@ -28,5 +28,8 @@ namespace XadrezConsole.Board
         {
             NumMovements++;
         }
+
+        public abstract bool[,] PossibleMovements();
+        
     }
 }

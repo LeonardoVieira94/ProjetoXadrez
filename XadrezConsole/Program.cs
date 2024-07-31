@@ -21,6 +21,10 @@ namespace XadrezConsole
                     Console.WriteLine();
                     Console.Write("Origin: ");
                     Posicao origin = Screen.ReadPosition().ToPosition();
+                    Console.Clear();
+                    bool[,] posicoesPossiveis = match.Tab.Peca(origin).PossibleMovements();
+                    Screen.PrintBoard(match.Tab, posicoesPossiveis);
+                    Console.WriteLine();
                     Console.Write("Target: ");
                     Posicao target = Screen.ReadPosition().ToPosition();
 
