@@ -3,6 +3,7 @@ using XadrezConsole.Board.Enums;
 using XadrezConsole.Board.Exceptions;
 using XadrezConsole.ChessGame;
 
+
 namespace XadrezConsole
 {
     class Program
@@ -11,20 +12,23 @@ namespace XadrezConsole
         {
             try
             {
+                ChessMatch match = new ChessMatch();
 
-                Tabuleiro tab = new Tabuleiro(8, 8);
-                tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(0, 0));
-                tab.ColocarPeca(new Tower(Cor.Black, tab), new Posicao(1, 3));
-                tab.ColocarPeca(new King(Cor.Black, tab), new Posicao(2, 4));
-                tab.ColocarPeca(new King(Cor.White, tab), new Posicao(3, 5));
+                while (!match.EndGame)
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(match.Tab);
+                    Console.WriteLine();
+                    Console.Write("Origin: ");
+                    Posicao origin = Screen.ReadPosition().ToPosition();
+                    Console.Write("Target: ");
+                    Posicao target = Screen.ReadPosition().ToPosition();
 
-                Screen.PrintBoard(tab);
+                    match.MakeMovement(origin, target);
+                }
 
-                ChessPosition piece = new ChessPosition('c', 7);
-
-                Console.WriteLine(piece);
-
-                Console.WriteLine(piece.ToPosition());
+                
+                
             }
 
             catch (BoardException e)

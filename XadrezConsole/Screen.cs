@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XadrezConsole.Board;
 using XadrezConsole.Board.Enums;
+using XadrezConsole.ChessGame;
 
 namespace XadrezConsole
 {
@@ -49,6 +50,15 @@ namespace XadrezConsole
                 Console.Write(peca);
             }
             
+        }
+
+        public static ChessPosition ReadPosition()
+        {
+            string s = Console.ReadLine();
+            char column = s[0];
+            int row = int.Parse(s[1]+"");
+
+            return new ChessPosition(column, row);
         }
     }
 }

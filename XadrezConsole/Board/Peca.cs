@@ -23,5 +23,10 @@ namespace XadrezConsole.Board
             Tab = tab;
             NumMovements = 0;
         }
+
+        public void IncrementNumMovements()
+        {
+            NumMovements++;
+        }
     }
 }

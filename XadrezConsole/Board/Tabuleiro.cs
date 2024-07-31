@@ -25,9 +25,9 @@ namespace XadrezConsole.Board
             Pecas = new Peca[Rows, Columns];
         }
 
-        public Peca Peca(int line, int column)
+        public Peca Peca(int row, int column)
         { 
-            return Pecas[line, column];
+            return Pecas[row, column];
         }
 
         public Peca Peca(Posicao pos)
@@ -50,6 +50,18 @@ namespace XadrezConsole.Board
             }
             Pecas[pos.Row, pos.Column] = p;
             p.Posicao = pos;
+        }
+
+        public Peca RetirarPeca(Posicao pos)
+        {
+            if (Peca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = Peca(pos);
+            aux.Posicao = null;
+            Pecas[pos.Row, pos.Column] = null;
+            return aux;
         }
 
         public bool PosicaoValida (Posicao pos)
