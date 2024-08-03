@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XadrezConsole.Board;
 using XadrezConsole.Board.Enums;
+using XadrezConsole.Board.Exceptions;
 
 
 namespace XadrezConsole.ChessGame
@@ -12,8 +13,8 @@ namespace XadrezConsole.ChessGame
     internal class ChessMatch
     {
         public Tabuleiro Tab { get; private set; }
-        private int Turn;
-        private Cor CurrentPlayer;
+        public int Turn { get; private set; }
+        public Cor CurrentPlayer { get; private set; }
         public bool EndGame { get; private set; }
 
         public ChessMatch()
@@ -32,6 +33,50 @@ namespace XadrezConsole.ChessGame
             Peca pecaCapturada = Tab.RetirarPeca(target);
             Tab.ColocarPeca(p, target);
         }
+
+        public void MakePlay(Posicao origin, Posicao target)
+        {
+            MakeMovement(origin, target);
+            Turn++;
+            ChangePlayer();
+        }
+
+        public void CheckOriginPosition(Posicao pos) 
+        {
+            if (Tab.Peca(pos) == null)
+            {
+                throw new BoardException("There is no piece on this position!");
+            }
+            if (CurrentPlayer != Tab.Peca(pos).Color)
+            {
+                throw new BoardException("You need to choose your piece color!");
+            }
+            if (!Tab.Peca(pos).IfPossibleMovements())
+            {
+                throw new BoardException("There's no possible movement!");
+
+            }
+        }
+        public void CheckTargetPosition(Posicao origin, Posicao target)
+        {
+            if (!Tab.Peca(origin).CanMoveTo(target))
+            {
+                throw new BoardException("Invalid target position! ");
+            }
+        }
+
+        private void ChangePlayer()
+        {
+            if (CurrentPlayer == Cor.White)
+            {
+                CurrentPlayer = Cor.Black;
+            }
+            else
+            {
+                CurrentPlayer = Cor.White;
+            }
+        }
+
 
         private void ColocarPecas()
         {

@@ -29,6 +29,26 @@ namespace XadrezConsole.Board
             NumMovements++;
         }
 
+        public bool IfPossibleMovements()
+        {
+            bool[,] mat = PossibleMovements();
+            for (int i = 0; i < Tab.Rows; i++)
+            {
+                for (int j = 0; j < Tab.Columns; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool CanMoveTo(Posicao pos) 
+        {
+            return PossibleMovements()[pos.Row, pos.Column];
+        }
+
         public abstract bool[,] PossibleMovements();
         
     }
