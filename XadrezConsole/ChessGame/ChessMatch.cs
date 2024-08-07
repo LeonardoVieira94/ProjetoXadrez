@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,9 @@ namespace XadrezConsole.ChessGame
         public int Turn { get; private set; }
         public Cor CurrentPlayer { get; private set; }
         public bool EndGame { get; private set; }
+        private HashSet<Peca> Pieces;
+        private HashSet<Peca> Captured;
+        public bool Check { get; private set; }
 
         public ChessMatch()
         {
@@ -23,22 +27,57 @@ namespace XadrezConsole.ChessGame
             Turn = 1;
             CurrentPlayer = Cor.White;
             EndGame = false;
+            Pieces = new HashSet<Peca>();
+            Captured = new HashSet<Peca>();
             ColocarPecas();
+            Check = false;  
         }
 
-        public void MakeMovement(Posicao origin, Posicao target)
+        public Peca MakeMovement(Posicao origin, Posicao target)
         {
             Peca p = Tab.RetirarPeca(origin);
-            p.IncrementNumMovements();
+            p.IncreaseNumMovements();
             Peca pecaCapturada = Tab.RetirarPeca(target);
             Tab.ColocarPeca(p, target);
+            if (pecaCapturada != null)
+            {
+                Captured.Add(pecaCapturada);
+            }
+            return pecaCapturada;
         }
 
         public void MakePlay(Posicao origin, Posicao target)
         {
-            MakeMovement(origin, target);
+            Peca capturedPiece = MakeMovement(origin, target);
+            if (InCheck(CurrentPlayer))
+            {
+                UnmakePlay(origin, target, capturedPiece);
+                throw new BoardException("You can't put yourself in check!");
+            }
+
+            if (InCheck(Rival(CurrentPlayer)))
+            {
+                Check = true;
+            }
+            else
+            {
+                Check = false;
+            }
+
             Turn++;
             ChangePlayer();
+        }
+
+        public void UnmakePlay(Posicao origin, Posicao target, Peca capturedPiece)
+        {
+            Peca p = Tab.RetirarPeca(target);
+            p.DecreaseNumMovements();
+            if (capturedPiece != null)
+            {
+                Tab.ColocarPeca(capturedPiece, target);
+                Captured.Remove(capturedPiece);
+            }
+            Tab.ColocarPeca(p, origin);
         }
 
         public void CheckOriginPosition(Posicao pos) 
@@ -77,22 +116,99 @@ namespace XadrezConsole.ChessGame
             }
         }
 
+        public HashSet<Peca> CapturedPiece (Cor color)
+        {
+            HashSet<Peca> aux = new HashSet<Peca>();
+            foreach (Peca x in Captured)
+            {
+                if (x.Color == color)
+                {
+                    aux.Add(x);
+                }
+            }
+            return aux;
+        }
 
+        public HashSet<Peca> GamePieces(Cor color)
+        {
+            HashSet<Peca> aux = new HashSet<Peca>();
+            foreach (Peca x in Pieces)
+            {
+                if (x.Color == color)
+                {
+                    aux.Add(x);
+                }
+            }
+            aux.ExceptWith(CapturedPiece(color));
+            return aux;
+        }
+
+        private Cor Rival(Cor color)
+        {
+            if (color == Cor.White) 
+            {
+                return Cor.Black;
+            }
+            else
+            {
+                return Cor.White;
+            }
+        }
+
+        private Peca King(Cor color)
+        {
+            foreach (Peca x in GamePieces(color))
+            {
+                if (x is King)
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
+
+        public bool InCheck(Cor color)
+        {
+            Peca K = King(color);
+            if (K == null)
+            {
+                throw new BoardException("There's no king on the board");
+            }
+            foreach (Peca x in GamePieces(Rival(color))) 
+            {
+                bool[,] mat = x.PossibleMovements();
+                if (mat[K.Posicao.Row, K.Posicao.Column])
+                {
+                    return true;
+                }               
+            }
+            return false;
+        }
+
+
+        public void PutNewPiece(char column, int row, Peca piece)
+        {
+            Tab.ColocarPeca(piece, new ChessPosition(column, row).ToPosition());
+            Pieces.Add(piece);
+        }
         private void ColocarPecas()
         {
-            Tab.ColocarPeca(new Tower(Cor.White, Tab), new ChessPosition('c', 1).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.White, Tab), new ChessPosition('c', 2).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.White, Tab), new ChessPosition('d', 2).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.White, Tab), new ChessPosition('e', 1).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.White, Tab), new ChessPosition('e', 2).ToPosition());
-            Tab.ColocarPeca(new King(Cor.White, Tab), new ChessPosition('d', 1).ToPosition());
+            PutNewPiece('c', 1, new Tower(Cor.White, Tab));
+            PutNewPiece('c', 2, new Tower(Cor.White, Tab));
+            PutNewPiece('d', 2, new Tower(Cor.White, Tab));
+            PutNewPiece('e', 2, new Tower(Cor.White, Tab));
+            PutNewPiece('e', 1, new Tower(Cor.White, Tab));
+            PutNewPiece('d', 1, new King(Cor.White, Tab));
 
-            Tab.ColocarPeca(new Tower(Cor.Black, Tab), new ChessPosition('c', 7).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.Black, Tab), new ChessPosition('c', 8).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.Black, Tab), new ChessPosition('d', 7).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.Black, Tab), new ChessPosition('e', 7).ToPosition());
-            Tab.ColocarPeca(new Tower(Cor.Black, Tab), new ChessPosition('e', 8).ToPosition());
-            Tab.ColocarPeca(new King(Cor.Black, Tab), new ChessPosition('d', 8).ToPosition());
+            PutNewPiece('c', 7, new Tower(Cor.Black, Tab));
+            PutNewPiece('c', 8, new Tower(Cor.Black, Tab));
+            PutNewPiece('d', 7, new Tower(Cor.Black, Tab));
+            PutNewPiece('e', 7, new Tower(Cor.Black, Tab));
+            PutNewPiece('e', 8, new Tower(Cor.Black, Tab));
+            PutNewPiece('d', 8, new King(Cor.Black, Tab));
+
+
+            
 
         }
     }

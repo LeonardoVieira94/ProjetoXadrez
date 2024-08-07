@@ -24,9 +24,14 @@ namespace XadrezConsole.Board
             NumMovements = 0;
         }
 
-        public void IncrementNumMovements()
+        public void IncreaseNumMovements()
         {
             NumMovements++;
+        }
+
+        public void DecreaseNumMovements()
+        {
+            NumMovements--;
         }
 
         public bool IfPossibleMovements()

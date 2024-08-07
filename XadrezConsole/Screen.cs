@@ -11,6 +11,45 @@ namespace XadrezConsole
 {
     internal class Screen
     {
+
+        public static void PrintChessMatch(ChessMatch match)
+        {
+            Screen.PrintBoard(match.Tab);
+            Console.WriteLine();
+            PrintCapturedPieces(match);
+            Console.WriteLine();
+            Console.WriteLine("Turn: " + match.Turn);
+            Console.WriteLine("Waiting play: " + match.CurrentPlayer);
+            if (match.Check)
+            {
+                Console.WriteLine("CHECK!");
+            }
+        }
+
+        public static void PrintCapturedPieces(ChessMatch match)
+        {
+            Console.WriteLine("Captured pieces: ");
+            Console.Write("White: ");
+            PrintHash(match.CapturedPiece(Cor.White));
+            Console.WriteLine();
+            Console.Write("Black: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintHash(match.CapturedPiece(Cor.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void PrintHash(HashSet<Peca> hash)
+        {
+            Console.Write("[");
+            foreach (Peca x in hash) 
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
+
         public static void PrintBoard(Tabuleiro tab)
         {
             for (int i = 0; i < tab.Rows; i++)

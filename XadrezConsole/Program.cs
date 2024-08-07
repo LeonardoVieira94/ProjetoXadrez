@@ -19,10 +19,7 @@ namespace XadrezConsole
                     try
                     {
                         Console.Clear();
-                        Screen.PrintBoard(match.Tab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turn: " + match.Turn);
-                        Console.WriteLine("Waiting play: " + match.CurrentPlayer);
+                        Screen.PrintChessMatch(match);
                         Console.WriteLine();
                         Console.Write("Origin: ");
                         Posicao origin = Screen.ReadPosition().ToPosition();                     
