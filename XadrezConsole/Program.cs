@@ -41,8 +41,9 @@ namespace XadrezConsole
                     }
                 }
 
-                
-                
+                Console.Clear();
+                Screen.PrintChessMatch(match);
+
             }
 
             catch (BoardException e)

@@ -63,9 +63,15 @@ namespace XadrezConsole.ChessGame
             {
                 Check = false;
             }
-
-            Turn++;
-            ChangePlayer();
+            if (CheckMateTest(Rival(CurrentPlayer)))
+            {
+                EndGame = true;
+            }
+            else
+            {
+                Turn++;
+                ChangePlayer();
+            }
         }
 
         public void UnmakePlay(Posicao origin, Posicao target, Peca capturedPiece)
@@ -185,6 +191,40 @@ namespace XadrezConsole.ChessGame
             return false;
         }
 
+        public bool CheckMateTest(Cor color)
+        {
+            if (!InCheck(color))
+            {
+                return false;
+            }
+            foreach (Peca x in GamePieces(color))
+            {
+                bool[,] mat = x.PossibleMovements();
+                for (int i = 0; i < Tab.Rows; i++)
+                {
+                    for (int j = 0; j < Tab.Columns; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origin = x.Posicao;
+                            Posicao target = new Posicao(i, j);
+                            Peca capturedPiece = MakeMovement(origin, target );
+                            bool testCheck = InCheck(color);
+                            UnmakePlay(origin, target, capturedPiece);
+                            if (!testCheck)
+                            {
+                                return false;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            return true;
+
+        }
+
 
         public void PutNewPiece(char column, int row, Peca piece)
         {
@@ -193,22 +233,42 @@ namespace XadrezConsole.ChessGame
         }
         private void ColocarPecas()
         {
-            PutNewPiece('c', 1, new Tower(Cor.White, Tab));
-            PutNewPiece('c', 2, new Tower(Cor.White, Tab));
-            PutNewPiece('d', 2, new Tower(Cor.White, Tab));
-            PutNewPiece('e', 2, new Tower(Cor.White, Tab));
-            PutNewPiece('e', 1, new Tower(Cor.White, Tab));
-            PutNewPiece('d', 1, new King(Cor.White, Tab));
+            PutNewPiece('a', 1, new Tower(Cor.White, Tab));
+            PutNewPiece('b', 1, new Horse(Cor.White, Tab));
+            PutNewPiece('c', 1, new Bishop(Cor.White, Tab));
+            PutNewPiece('d', 1, new Queen(Cor.White, Tab));
+            PutNewPiece('e', 1, new King(Cor.White, Tab, this));
+            PutNewPiece('f', 1, new Bishop(Cor.White, Tab));
+            PutNewPiece('g', 1, new Horse(Cor.White, Tab));
+            PutNewPiece('h', 1, new Tower(Cor.White, Tab));
+            PutNewPiece('a', 2, new Pawn(Cor.White, Tab, this));
+            PutNewPiece('b', 2, new Pawn(Cor.White, Tab, this));
+            PutNewPiece('c', 2, new Pawn(Cor.White, Tab, this));
+            PutNewPiece('d', 2, new Pawn(Cor.White, Tab, this));
+            PutNewPiece('e', 2, new Pawn(Cor.White, Tab, this));
+            PutNewPiece('f', 2, new Pawn(Cor.White, Tab, this));
+            PutNewPiece('g', 2, new Pawn(Cor.White, Tab, this));
+            PutNewPiece('h', 2, new Pawn(Cor.White, Tab, this));
 
-            PutNewPiece('c', 7, new Tower(Cor.Black, Tab));
-            PutNewPiece('c', 8, new Tower(Cor.Black, Tab));
-            PutNewPiece('d', 7, new Tower(Cor.Black, Tab));
-            PutNewPiece('e', 7, new Tower(Cor.Black, Tab));
-            PutNewPiece('e', 8, new Tower(Cor.Black, Tab));
-            PutNewPiece('d', 8, new King(Cor.Black, Tab));
+            PutNewPiece('a', 8, new Tower(Cor.Black, Tab));
+            PutNewPiece('b', 8, new Horse(Cor.Black, Tab));
+            PutNewPiece('c', 8, new Bishop(Cor.Black, Tab));
+            PutNewPiece('d', 8, new Queen(Cor.Black, Tab));
+            PutNewPiece('e', 8, new King(Cor.Black, Tab, this));
+            PutNewPiece('f', 8, new Bishop(Cor.Black, Tab));
+            PutNewPiece('g', 8, new Horse(Cor.Black, Tab));
+            PutNewPiece('h', 8, new Tower(Cor.Black, Tab));
+            PutNewPiece('a', 7, new Pawn(Cor.Black, Tab, this));
+            PutNewPiece('b', 7, new Pawn(Cor.Black, Tab, this));
+            PutNewPiece('c', 7, new Pawn(Cor.Black, Tab, this));
+            PutNewPiece('d', 7, new Pawn(Cor.Black, Tab, this));
+            PutNewPiece('e', 7, new Pawn(Cor.Black, Tab, this));
+            PutNewPiece('f', 7, new Pawn(Cor.Black, Tab, this));
+            PutNewPiece('g', 7, new Pawn(Cor.Black, Tab, this));
+            PutNewPiece('h', 7, new Pawn(Cor.Black, Tab, this));
 
 
-            
+
 
         }
     }

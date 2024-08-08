@@ -8,87 +8,71 @@ using XadrezConsole.Board.Enums;
 
 namespace XadrezConsole.ChessGame
 {
-    internal class King : Peca
+    internal class Horse : Peca
     {
-        ChessMatch Match;
-        public King(Cor color, Tabuleiro tab, ChessMatch match) : base(color, tab)
+        public Horse(Cor color, Tabuleiro Tab) : base(color, Tab)
         {
-            Match = match;
         }
 
         public override string ToString()
         {
-            return "R";
+            return "H";
         }
 
         private bool CanMove(Posicao pos)
         {
             Peca p = Tab.Peca(pos);
-            return p == null || p.Color != Color;
+            return p == null || p.Color != this.Color;
         }
+
         public override bool[,] PossibleMovements()
         {
             bool[,] mat = new bool[Tab.Rows, Tab.Columns];
+
             Posicao pos = new Posicao(0, 0);
 
-            //Upper
-            pos.SetValues(Posicao.Row - 1, Posicao.Column);
+            pos.SetValues(Posicao.Row - 1, Posicao.Column - 2);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
-
-            //NE
-            pos.SetValues(Posicao.Row - 1, Posicao.Column + 1);
+            pos.SetValues(Posicao.Row - 2, Posicao.Column - 1);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
-
-            //right
-            pos.SetValues(Posicao.Row, Posicao.Column + 1);
+            pos.SetValues(Posicao.Row - 2, Posicao.Column + 1);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
-
-            //SE
-            pos.SetValues(Posicao.Row + 1, Posicao.Column + 1);
+            pos.SetValues(Posicao.Row - 1, Posicao.Column + 2);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
-
-            //lower
-            pos.SetValues(Posicao.Row + 1, Posicao.Column);
+            pos.SetValues(Posicao.Row + 1, Posicao.Column + 2);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
-
-            // So
-            pos.SetValues(Posicao.Row + 1, Posicao.Column - 1);
+            pos.SetValues(Posicao.Row + 2, Posicao.Column + 1);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
-
-            //left 
-            pos.SetValues(Posicao.Row, Posicao.Column - 1);
+            pos.SetValues(Posicao.Row + 2, Posicao.Column - 1);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
-
-            //NO
-            pos.SetValues(Posicao.Row - 1, Posicao.Column - 1);
+            pos.SetValues(Posicao.Row + 1, Posicao.Column - 2);
             if (Tab.PosicaoValida(pos) && CanMove(pos))
             {
                 mat[pos.Row, pos.Column] = true;
             }
 
             return mat;
-
         }
     }
 }

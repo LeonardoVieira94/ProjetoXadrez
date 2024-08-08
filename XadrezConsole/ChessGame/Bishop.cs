@@ -9,21 +9,21 @@ using XadrezConsole.Board.Enums;
 
 namespace XadrezConsole.ChessGame
 {
-    internal class Queen : Peca
+    internal class Bishop : Peca
     {
-        public Queen(Cor color, Tabuleiro Tab) : base(color, Tab)
+        public Bishop(Cor color, Tabuleiro tab) : base(color, tab)
         {
         }
 
         public override string ToString()
         {
-            return "Q";
+            return "B";
         }
 
         private bool CanMove(Posicao pos)
         {
             Peca p = Tab.Peca(pos);
-            return p == null || p.Color != this.Color;
+            return p == null || p.Color != Color;
         }
 
         public override bool[,] PossibleMovements()
@@ -31,54 +31,6 @@ namespace XadrezConsole.ChessGame
             bool[,] mat = new bool[Tab.Rows, Tab.Columns];
 
             Posicao pos = new Posicao(0, 0);
-
-            // esquerda
-            pos.SetValues(Posicao.Row, Posicao.Column - 1);
-            while (Tab.PosicaoValida(pos) && CanMove(pos))
-            {
-                mat[pos.Row, pos.Column] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Color != Color)
-                {
-                    break;
-                }
-                pos.SetValues(pos.Row, pos.Column - 1);
-            }
-
-            // direita
-            pos.SetValues(Posicao.Row, Posicao.Column + 1);
-            while (Tab.PosicaoValida(pos) && CanMove(pos))
-            {
-                mat[pos.Row, pos.Column] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Color != Color)
-                {
-                    break;
-                }
-                pos.SetValues(pos.Row, pos.Column + 1);
-            }
-
-            // acima
-            pos.SetValues(Posicao.Row - 1, Posicao.Column);
-            while (Tab.PosicaoValida(pos) && CanMove(pos))
-            {
-                mat[pos.Row, pos.Column] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Color != Color)
-                {
-                    break;
-                }
-                pos.SetValues(pos.Row - 1, pos.Column);
-            }
-
-            // abaixo
-            pos.SetValues(Posicao.Row + 1, Posicao.Column);
-            while (Tab.PosicaoValida(pos) && CanMove(pos))
-            {
-                mat[pos.Row, pos.Column] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Color != Color)
-                {
-                    break;
-                }
-                pos.SetValues(pos.Row + 1, pos.Column);
-            }
 
             // NO
             pos.SetValues(Posicao.Row - 1, Posicao.Column - 1);
