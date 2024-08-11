@@ -18,13 +18,19 @@ namespace XadrezConsole.ChessGame
 
         public override string ToString()
         {
-            return "R";
+            return "K";
         }
 
         private bool CanMove(Posicao pos)
         {
             Peca p = Tab.Peca(pos);
             return p == null || p.Color != Color;
+        }
+
+        private bool CastlingTest(Posicao pos) 
+        {
+            Peca p = Tab.Peca(pos);
+            return p != null && p is Rook && p.Color == Color && p.NumMovements == 0;
         }
         public override bool[,] PossibleMovements()
         {
@@ -87,8 +93,37 @@ namespace XadrezConsole.ChessGame
                 mat[pos.Row, pos.Column] = true;
             }
 
-            return mat;
+            //Special Movement
 
+            if (NumMovements == 0 && !Match.Check)
+            {
+                //Small Castling
+                Posicao posRook1 = new Posicao(Posicao.Row, Posicao.Column + 3);
+                if (CastlingTest(posRook1))
+                {
+                    Posicao p1 = new Posicao(Posicao.Row, Posicao.Column + 1);
+                    Posicao p2 = new Posicao(Posicao.Row, Posicao.Column + 2);
+                    if (Tab.Peca(p1) == null && Tab.Peca(p2) == null)
+                    {
+                        mat[Posicao.Row, Posicao.Column + 2] = true;
+                    }
+                }
+
+                //Bigger Castling
+                Posicao posRook2 = new Posicao(Posicao.Row, Posicao.Column - 4);
+                if (CastlingTest(posRook2))
+                {
+                    Posicao p1 = new Posicao(Posicao.Row, Posicao.Column - 1);
+                    Posicao p2 = new Posicao(Posicao.Row, Posicao.Column - 2);
+                    Posicao p3 = new Posicao(Posicao.Row, Posicao.Column - 3);
+                    if (Tab.Peca(p1) == null && Tab.Peca(p2) == null && Tab.Peca(p3) == null)
+                    {
+                        mat[Posicao.Row, Posicao.Column - 2] = true;
+                    }
+                }
+                
+            }
+            return mat;
         }
     }
 }

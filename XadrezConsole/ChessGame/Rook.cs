@@ -8,15 +8,15 @@ using XadrezConsole.Board.Enums;
 
 namespace XadrezConsole.ChessGame
 {
-    internal class Tower : Peca
+    internal class Rook : Peca
     {
-        public Tower(Cor color, Tabuleiro tab) : base(color, tab)
+        public Rook(Cor color, Tabuleiro tab) : base(color, tab)
         {
         }
 
         public override string ToString()
         {
-            return "T";
+            return "R";
         }
 
         private bool CanMove(Posicao pos)
