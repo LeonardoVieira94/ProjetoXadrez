@@ -98,6 +98,18 @@ namespace XadrezConsole.ChessGame
 
             Peca p = Tab.Peca(target);
 
+            if (p is Pawn)
+            {
+                if ((p.Color == Cor.White && target.Row == 0) || (p.Color == Cor.Black && target.Row == 7)) 
+                {
+                    Tab.RetirarPeca(target);
+                    Pieces.Remove(p);
+                    Peca queen = new Queen(p.Color, Tab);
+                    Tab.ColocarPeca(queen, target);
+                    Pieces.Add(queen);
+                }
+            }
+
             if (InCheck(Rival(CurrentPlayer)))
             {
                 Check = true;
