@@ -20,6 +20,7 @@ namespace XadrezConsole.ChessGame
         private HashSet<Peca> Pieces;
         private HashSet<Peca> Captured;
         public bool Check { get; private set; }
+        public Peca VulnerableEnPassant { get; private set; }
 
         public ChessMatch()
         {
@@ -37,11 +38,11 @@ namespace XadrezConsole.ChessGame
         {
             Peca p = Tab.RetirarPeca(origin);
             p.IncreaseNumMovements();
-            Peca pecaCapturada = Tab.RetirarPeca(target);
+            Peca capturedPiece = Tab.RetirarPeca(target);
             Tab.ColocarPeca(p, target);
-            if (pecaCapturada != null)
+            if (capturedPiece != null)
             {
-                Captured.Add(pecaCapturada);
+                Captured.Add(capturedPiece);
             }
             //#Castling(small)
             if (p is King && target.Column == origin.Column + 2)
@@ -63,7 +64,27 @@ namespace XadrezConsole.ChessGame
                 Tab.ColocarPeca(R, targetR);
 
             }
-            return pecaCapturada;
+            //#En Passant
+
+            if (p is Pawn)
+            {
+                if (origin.Column != target.Column && capturedPiece == null)
+                {
+                    Posicao posP;
+                    if (p.Color == Cor.White)
+                    {
+                        posP = new Posicao(target.Row + 1, target.Column);
+                    }
+                    else
+                    {
+                        posP = new Posicao(target.Row - 1, target.Column);
+                    }
+                    capturedPiece = Tab.RetirarPeca(posP);
+                    Captured.Add(capturedPiece);
+                }
+            }
+
+            return capturedPiece;
         }
 
         public void MakePlay(Posicao origin, Posicao target)
@@ -71,9 +92,11 @@ namespace XadrezConsole.ChessGame
             Peca capturedPiece = MakeMovement(origin, target);
             if (InCheck(CurrentPlayer))
             {
-                UnmakePlay(origin, target, capturedPiece);
+                UnmakeMovement(origin, target, capturedPiece);
                 throw new BoardException("You can't put yourself in check!");
             }
+
+            Peca p = Tab.Peca(target);
 
             if (InCheck(Rival(CurrentPlayer)))
             {
@@ -92,9 +115,20 @@ namespace XadrezConsole.ChessGame
                 Turn++;
                 ChangePlayer();
             }
+
+            //#En Passant
+
+            if (p is Pawn && (target.Row == origin.Row - 2 || target.Row == origin.Row + 2))
+            {
+                VulnerableEnPassant = p;
+            }
+            else
+            {
+                VulnerableEnPassant = null;
+            }
         }
 
-        public void UnmakePlay(Posicao origin, Posicao target, Peca capturedPiece)
+        public void UnmakeMovement(Posicao origin, Posicao target, Peca capturedPiece)
         {
             Peca p = Tab.RetirarPeca(target);
             p.DecreaseNumMovements();
@@ -125,6 +159,24 @@ namespace XadrezConsole.ChessGame
                 R.DecreaseNumMovements();
                 Tab.ColocarPeca(R, originR);
 
+            }
+            //#En Passant
+            if (p is Pawn)
+            {
+                if (origin.Column != target.Column && capturedPiece == VulnerableEnPassant)
+                {
+                    Peca peao = Tab.RetirarPeca(target);
+                    Posicao posP;
+                    if (p.Color == Cor.White)
+                    {
+                        posP = new Posicao(3, target.Column);
+                    }
+                    else
+                    {
+                        posP = new Posicao(4, target.Column);
+                    }
+                    Tab.ColocarPeca(peao, posP);
+                }
             }
         }
 
@@ -252,7 +304,7 @@ namespace XadrezConsole.ChessGame
                             Posicao target = new Posicao(i, j);
                             Peca capturedPiece = MakeMovement(origin, target );
                             bool testCheck = InCheck(color);
-                            UnmakePlay(origin, target, capturedPiece);
+                            UnmakeMovement(origin, target, capturedPiece);
                             if (!testCheck)
                             {
                                 return false;

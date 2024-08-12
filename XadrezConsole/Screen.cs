@@ -93,6 +93,7 @@ namespace XadrezConsole
                     }
                     PrintPeca(tab.Peca(i, j));
                     Console.Write(" ");
+                    Console.BackgroundColor = originalBackground;
                 }
 
                 Console.WriteLine();

@@ -32,7 +32,7 @@ namespace XadrezConsole.ChessGame
 
             Posicao pos = new Posicao(0, 0);
 
-            // esquerda
+            // left
             pos.SetValues(Posicao.Row, Posicao.Column - 1);
             while (Tab.PosicaoValida(pos) && CanMove(pos))
             {

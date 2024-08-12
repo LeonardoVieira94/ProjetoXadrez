@@ -70,21 +70,21 @@ namespace XadrezConsole.ChessGame
                 }
 
                 // #jogadaespecial en passant
-                /* if (Posicao.Row == 3)
+                if (Posicao.Row == 3)
                  {
-                     Posicao esquerda = new Posicao(Posicao.Row, Posicao.Column - 1);
-                     if (Tab.PosicaoValida(esquerda) && RivalPiece(esquerda) && Tab.Peca(esquerda) == Match.vulneravelEnPassant)
+                     Posicao left = new Posicao(Posicao.Row, Posicao.Column - 1);
+                     if (Tab.PosicaoValida(left) && RivalPiece(left) && Tab.Peca(left) == Match.VulnerableEnPassant)
                      {
-                         mat[esquerda.Row - 1, esquerda.Column] = true;
+                         mat[left.Row - 1, left.Column] = true;
                      }
-                     Posicao direita = new Posicao(Posicao.Row, Posicao.Column + 1);
-                     if (Tab.PosicaoValida(direita) && RivalPiece(direita) && Tab.Peca(direita) == Match.vulneravelEnPassant)
+                     Posicao right = new Posicao(Posicao.Row, Posicao.Column + 1);
+                     if (Tab.PosicaoValida(right) && RivalPiece(right) && Tab.Peca(right) == Match.VulnerableEnPassant)
                      {
-                         mat[direita.Row - 1, direita.Column] = true;
+                         mat[right.Row - 1, right.Column] = true;
                      }
                  }
-             }*/
             }
+            
             else
             {
 
@@ -111,19 +111,19 @@ namespace XadrezConsole.ChessGame
                 }
 
                 // #jogadaespecial en passant
-                /* if (Posicao.Row == 4)
+                 if (Posicao.Row == 4)
                  {
-                     Posicao esquerda = new Posicao(Posicao.Row, Posicao.Column - 1);
-                     if (Tab.PosicaoValida(esquerda) && RivalPiece(esquerda) && Tab.Peca(esquerda) == Match.vulneravelEnPassant)
+                     Posicao left = new Posicao(Posicao.Row, Posicao.Column - 1);
+                     if (Tab.PosicaoValida(left) && RivalPiece(left) && Tab.Peca(left) == Match.VulnerableEnPassant)
                      {
-                         mat[esquerda.Row + 1, esquerda.Column] = true;
+                         mat[left.Row + 1, left.Column] = true;
                      }
-                     Posicao direita = new Posicao(Posicao.Row, Posicao.Column + 1);
-                     if (Tab.PosicaoValida(direita) && RivalPiece(direita) && Tab.Peca(direita) == Match.vulneravelEnPassant)
+                     Posicao right = new Posicao(Posicao.Row, Posicao.Column + 1);
+                     if (Tab.PosicaoValida(right) && RivalPiece(right) && Tab.Peca(right) == Match.VulnerableEnPassant)
                      {
-                         mat[direita.Row + 1, direita.Column] = true;
+                         mat[right.Row + 1, right.Column] = true;
                      }
-                 }*/
+                 }
             }
 
             return mat;
