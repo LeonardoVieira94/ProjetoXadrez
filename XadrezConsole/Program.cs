@@ -21,18 +21,18 @@ namespace XadrezConsole
                         Console.Clear();
                         Screen.PrintChessMatch(match);
                         Console.WriteLine();
-                        Console.Write("Origin: ");
-                        Posicao origin = Screen.ReadPosition().ToPosition();                     
-                        match.CheckOriginPosition(origin);
+                        Console.Write("Source: ");
+                        Posicao source = Screen.ReadPosition().ToPosition();                     
+                        match.CheckSourcePosition(source);
                         Console.Clear();
 
-                        bool[,] posicoesPossiveis = match.Tab.Peca(origin).PossibleMovements();
+                        bool[,] posicoesPossiveis = match.Tab.Peca(source).PossibleMovements();
                         Screen.PrintBoard(match.Tab, posicoesPossiveis);
                         Console.WriteLine();
                         Console.Write("Target: ");
                         Posicao target = Screen.ReadPosition().ToPosition();
-                        match.CheckTargetPosition(origin, target);
-                        match.MakePlay(origin, target);
+                        match.CheckTargetPosition(source, target);
+                        match.MakePlay(source, target);
                     }
                     catch (BoardException e)
                     {

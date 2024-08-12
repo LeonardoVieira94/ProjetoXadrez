@@ -76,7 +76,7 @@ namespace XadrezConsole
 
         public static void PrintBoard(Tabuleiro tab, bool[,] posicoesPossiveis)
         {
-            ConsoleColor originalBackground = Console.BackgroundColor;
+            ConsoleColor sourcealBackground = Console.BackgroundColor;
             ConsoleColor changedBackground = ConsoleColor.DarkGray;
             for (int i = 0; i < tab.Rows; i++)
             {
@@ -89,17 +89,17 @@ namespace XadrezConsole
                     }
                     else
                     {
-                         Console.BackgroundColor = originalBackground; 
+                         Console.BackgroundColor = sourcealBackground; 
                     }
                     PrintPeca(tab.Peca(i, j));
                     Console.Write(" ");
-                    Console.BackgroundColor = originalBackground;
+                    Console.BackgroundColor = sourcealBackground;
                 }
 
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
-            Console.BackgroundColor = originalBackground;
+            Console.BackgroundColor = sourcealBackground;
         }
 
         public static void PrintPeca(Peca peca)

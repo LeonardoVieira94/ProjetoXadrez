@@ -34,9 +34,9 @@ namespace XadrezConsole.ChessGame
             Check = false;  
         }
 
-        public Peca MakeMovement(Posicao origin, Posicao target)
+        public Peca MakeMovement(Posicao source, Posicao target)
         {
-            Peca p = Tab.RetirarPeca(origin);
+            Peca p = Tab.RetirarPeca(source);
             p.IncreaseNumMovements();
             Peca capturedPiece = Tab.RetirarPeca(target);
             Tab.ColocarPeca(p, target);
@@ -45,21 +45,21 @@ namespace XadrezConsole.ChessGame
                 Captured.Add(capturedPiece);
             }
             //#Castling(small)
-            if (p is King && target.Column == origin.Column + 2)
+            if (p is King && target.Column == source.Column + 2)
             {
-                Posicao originR = new Posicao(origin.Row, origin.Column + 3);
-                Posicao targetR = new Posicao(origin.Row, origin.Column + 1);
-                Peca R = Tab.RetirarPeca(originR);
+                Posicao sourceR = new Posicao(source.Row, source.Column + 3);
+                Posicao targetR = new Posicao(source.Row, source.Column + 1);
+                Peca R = Tab.RetirarPeca(sourceR);
                 R.IncreaseNumMovements();
                 Tab.ColocarPeca(R, targetR);
 
             }
             //#Castling(bigger)
-            if (p is King && target.Column == origin.Column - 2)
+            if (p is King && target.Column == source.Column - 2)
             {
-                Posicao originR = new Posicao(origin.Row, origin.Column - 4);
-                Posicao targetR = new Posicao(origin.Row, origin.Column - 1);
-                Peca R = Tab.RetirarPeca(originR);
+                Posicao sourceR = new Posicao(source.Row, source.Column - 4);
+                Posicao targetR = new Posicao(source.Row, source.Column - 1);
+                Peca R = Tab.RetirarPeca(sourceR);
                 R.IncreaseNumMovements();
                 Tab.ColocarPeca(R, targetR);
 
@@ -68,7 +68,7 @@ namespace XadrezConsole.ChessGame
 
             if (p is Pawn)
             {
-                if (origin.Column != target.Column && capturedPiece == null)
+                if (source.Column != target.Column && capturedPiece == null)
                 {
                     Posicao posP;
                     if (p.Color == Cor.White)
@@ -87,12 +87,12 @@ namespace XadrezConsole.ChessGame
             return capturedPiece;
         }
 
-        public void MakePlay(Posicao origin, Posicao target)
+        public void MakePlay(Posicao source, Posicao target)
         {
-            Peca capturedPiece = MakeMovement(origin, target);
+            Peca capturedPiece = MakeMovement(source, target);
             if (InCheck(CurrentPlayer))
             {
-                UnmakeMovement(origin, target, capturedPiece);
+                UnmakeMovement(source, target, capturedPiece);
                 throw new BoardException("You can't put yourself in check!");
             }
 
@@ -130,7 +130,7 @@ namespace XadrezConsole.ChessGame
 
             //#En Passant
 
-            if (p is Pawn && (target.Row == origin.Row - 2 || target.Row == origin.Row + 2))
+            if (p is Pawn && (target.Row == source.Row - 2 || target.Row == source.Row + 2))
             {
                 VulnerableEnPassant = p;
             }
@@ -140,7 +140,7 @@ namespace XadrezConsole.ChessGame
             }
         }
 
-        public void UnmakeMovement(Posicao origin, Posicao target, Peca capturedPiece)
+        public void UnmakeMovement(Posicao source, Posicao target, Peca capturedPiece)
         {
             Peca p = Tab.RetirarPeca(target);
             p.DecreaseNumMovements();
@@ -149,33 +149,33 @@ namespace XadrezConsole.ChessGame
                 Tab.ColocarPeca(capturedPiece, target);
                 Captured.Remove(capturedPiece);
             }
-            Tab.ColocarPeca(p, origin);
+            Tab.ColocarPeca(p, source);
 
             //#Castling(small)
-            if (p is King && target.Column == origin.Column + 2)
+            if (p is King && target.Column == source.Column + 2)
             {
-                Posicao originR = new Posicao(origin.Row, origin.Column + 3);
+                Posicao sourceR = new Posicao(source.Row, source.Column + 3);
                 Posicao targetR = new Posicao(target.Row, target.Column + 1);
                 Peca R = Tab.RetirarPeca(targetR);
                 R.DecreaseNumMovements();
-                Tab.ColocarPeca(R, originR);
+                Tab.ColocarPeca(R, sourceR);
 
             }
 
             //#Castling(bigger)
-            if (p is King && target.Column == origin.Column - 2)
+            if (p is King && target.Column == source.Column - 2)
             {
-                Posicao originR = new Posicao(origin.Row, origin.Column - 4);
+                Posicao sourceR = new Posicao(source.Row, source.Column - 4);
                 Posicao targetR = new Posicao(target.Row, target.Column - 1);
                 Peca R = Tab.RetirarPeca(targetR);
                 R.DecreaseNumMovements();
-                Tab.ColocarPeca(R, originR);
+                Tab.ColocarPeca(R, sourceR);
 
             }
             //#En Passant
             if (p is Pawn)
             {
-                if (origin.Column != target.Column && capturedPiece == VulnerableEnPassant)
+                if (source.Column != target.Column && capturedPiece == VulnerableEnPassant)
                 {
                     Peca peao = Tab.RetirarPeca(target);
                     Posicao posP;
@@ -192,7 +192,7 @@ namespace XadrezConsole.ChessGame
             }
         }
 
-        public void CheckOriginPosition(Posicao pos) 
+        public void CheckSourcePosition(Posicao pos) 
         {
             if (Tab.Peca(pos) == null)
             {
@@ -208,9 +208,9 @@ namespace XadrezConsole.ChessGame
 
             }
         }
-        public void CheckTargetPosition(Posicao origin, Posicao target)
+        public void CheckTargetPosition(Posicao source, Posicao target)
         {
-            if (!Tab.Peca(origin).CanMoveTo(target))
+            if (!Tab.Peca(source).CanMoveTo(target))
             {
                 throw new BoardException("Invalid target position! ");
             }
@@ -312,11 +312,11 @@ namespace XadrezConsole.ChessGame
                     {
                         if (mat[i, j])
                         {
-                            Posicao origin = x.Posicao;
+                            Posicao source = x.Posicao;
                             Posicao target = new Posicao(i, j);
-                            Peca capturedPiece = MakeMovement(origin, target );
+                            Peca capturedPiece = MakeMovement(source, target );
                             bool testCheck = InCheck(color);
-                            UnmakeMovement(origin, target, capturedPiece);
+                            UnmakeMovement(source, target, capturedPiece);
                             if (!testCheck)
                             {
                                 return false;
